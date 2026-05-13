@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="logo">minimalist</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Shop</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="cart.html" class="cart-link">Cart <span class="cart-badge" data-cart-count="0">0</span></a></li>
+      <li id="user-menu" style="display: none;">
+        <a href="#" onclick="logout(); return false;">Logout</a>
+      </li>
+      <li id="auth-menu">
+        <a href="login.html">Login</a> / <a href="signup.html">Sign Up</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<header><h1>Your Cart</h1></header>
+
+<section class="cart-page">
+  <div id="cart-items"></div>
+  <h2 id="total" class="cart-total"></h2>
+
+  <form id="order-form" class="stack-form compact-form">
+    <h3>Finalize Your Order</h3>
+    <p id="user-info" class="user-info"></p>
+    <button type="submit">Complete Order</button>
+    <p id="order-status" class="status-message" aria-live="polite"></p>
+  </form>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="js/app.js"></script>
+<script>
+  function logout() {
+    $.ajax({
+      url: '/api/logout.php',
+      method: 'GET',
+      success: function() {
+        window.location.href = 'login.html';
+      }
+    });
+    return false;
+  }
+</script>
+
+</body>
+</html>
